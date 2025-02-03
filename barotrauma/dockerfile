@@ -1,13 +1,5 @@
 FROM cm2network/steamcmd
-WORKDIR /home/steam/steamcmd/
-# enable this if you need proxy
-#ENV http_proxy=http://192.168.xxx.xxx:10809
-#ENV https_proxy=$http_proxy
-#ENV socks5_proxy="socks5://192.168.xxx.xxx:10809"
 RUN /home/steam/steamcmd/steamcmd.sh +force_install_dir ./barotrauma +login anonymous +app_update 1026340 validate +quit
 WORKDIR /home/steam/steamcmd/barotrauma
-RUN curl -fsSL https://github.com/evilfactory/LuaCsForBarotrauma/releases/download/latest/luacsforbarotrauma_build_linux_server.tar.gz -o /home/steam/steamcmd/barotrauma/luacsforbarotrauma_build_linux_server.tar.gz && tar -zxvf /home/steam/steamcmd/barotrauma/luacsforbarotrauma_build_linux_server.tar.gz && rm /home/steam/steamcmd/barotrauma/luacsforbarotrauma_build_linux_server.tar.gz
-COPY ./mods/ /home/steam/steamcmd/barotrauma/LocalMods
-COPY ./config/ /home/steam/steamcmd/barotrauma
-COPY ./data/ /home/steam/steamcmd/barotrauma/Data
-CMD ["/home/steam/steamcmd/barotrauma/DedicatedServer"]
+RUN curl -fsSL https://github.com/evilfactory/LuaCsForBarotrauma/releases/download/latest/luacsforbarotrauma_patch_linux_server.tar.gz -o luacsforbarotrauma_patch_linux_server.tar.gz && tar -zxvf luacsforbarotrauma_patch_linux_server.tar.gz && rm luacsforbarotrauma_patch_linux_server.tar.gz
+CMD ["./DedicatedServer"]

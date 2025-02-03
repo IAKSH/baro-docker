@@ -1,0 +1,19 @@
+version: '3'
+services:
+  baro:
+    build: ./barotrauma
+    volumes:
+        - "./Daedalic Entertainment GmbH:/home/steam/steamcmd/barotrauma/Daedalic Entertainment GmbH"
+        - "./config_player.xml:/home/steam/steamcmd/barotrauma/config_player.xml"
+        - "./serversettings.xml:/home/steam/steamcmd/barotrauma/serversettings.xml"
+        - "./Data:/home/steam/steamcmd/barotrauma/Data"
+        - "./LocalMods:/home/steam/steamcmd/barotrauma/LocalMods"
+        - "./ServerLogs:/home/steam/steamcmd/barotrauma/ServerLogs"
+    restart: always
+    #stdin_open: true
+    #tty: true
+
+  frpc:
+    image: natfrp/frpc
+    command: ["-f",""] # 填入你的访问密钥和隧道ID
+    restart: always
