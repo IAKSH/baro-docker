@@ -1,0 +1,1 @@
+This folder contains most of the config files for your mods.
